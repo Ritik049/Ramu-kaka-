@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>💬 RAMU Code Assistant</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+          margin: 0;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background-color: #f0f2f5;
+        }
+        #loginUI {
+          padding: 40px;
+          max-width: 500px;
+          margin: 100px auto;
+          background: #fff;
+          border-radius: 12px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        #chatUI {
+          display: none;
+          height: 100vh;
+          display: flex;
+        }
+        #sidebar {
+          width: 240px;
+          background: #2f3640;
+          color: white;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        #sidebar h3 {
+          margin-top: 0;
+          font-size: 18px;
+        }
+        #userList {
+          list-style: none;
+          padding: 0;
+          margin-bottom: 20px;
+        }
+        #userList li {
+          margin: 10px 0;
+          padding: 8px 12px;
+          background: #353b48;
+          border-radius: 6px;
+        }
+        #roomInfo {
+          background: #192a56;
+          padding: 10px;
+          border-radius: 6px;
+          font-size: 14px;
+          text-align: center;
+          word-wrap: break-word;
+        }
+
+        #main {
+          flex: 1;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+        }
+
+        #chatLog {
+          flex-grow: 1;
+          overflow-y: auto;
+          padding: 15px;
+          background: #ffffff;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          margin-bottom: 15px;
+        }
+
+        .chat-message {
+          padding: 8px 12px;
+          border-radius: 8px;
+          margin-bottom: 10px;
+          max-width: 80%;
+        }
+
+        .from-ramu {
+          background-color: #e6ffe6;
+          border-left: 5px solid #2ecc71;
+          align-self: flex-start;
+        }
+
+        .from-user {
+          background-color: #d6e4ff;
+          border-left: 5px solid #3498db;
+          align-self: flex-end;
+        }
+
+        .sender {
+          font-weight: bold;
+          margin-bottom: 4px;
+          display: block;
+        }
+
+        textarea, input[type="text"] {
+          width: 100%;
+          padding: 10px;
+          font-size: 14px;
+          margin-bottom: 10px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+        }
+
+        button {
+          padding: 10px 14px;
+          font-size: 14px;
+          margin-right: 10px;
+          border: none;
+          border-radius: 6px;
+          background-color: #3498db;
+          color: white;
+          cursor: pointer;
+        }
+
+        button:hover {
+          background-color: #2980b9;
+        }
+
+        pre {
+          background: #272822;
+          color: #f8f8f2;
+          padding: 10px;
+          border-radius: 6px;
+          overflow-x: auto;
+        }
+
+        code {
+          font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 👤 Login UI -->
+<div id="loginUI">
+    <h2>🧠 Welcome to RAMU Kaka Chat</h2>
+    <label>👤 Your Name:<br><input type="text" id="userIdInput" placeholder="e.g. Ritik" /></label><br><br>
+    <label>🏷️ Room ID:<br><input type="text" id="roomIdInput" value="room1" /></label><br><br>
+    <button onclick="startChat()">✅ Join Chat</button>
+</div>
+
+<!-- 💬 Chat UI -->
+<div id="chatUI">
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <div>
+            <h3>👥 Users in Room</h3>
+            <ul id="userList"></ul>
+        </div>
+        <div id="roomInfo">
+            <strong>Room ID:</strong><br><span id="roomDisplay">room1</span><br><br>
+            <button onclick="leaveChat()" style="background: #e74c3c;">🚪 Leave</button>
+        </div>
+    </div>
+
+    <!-- Main chat section -->
+    <div id="main">
+        <h2>💬 RAMU Code Chat</h2>
+
+        <div id="chatLog"></div>
+
+        <input type="text" id="textMsg" placeholder="Type a message or speak to RAMU..." />
+        <div>
+            <button onclick="sendMsg()">Send</button>
+            <button onclick="startListening()">🎙️ Speak</button>
+            <button onclick="stopSpeaking()">🛑 Stop RAMU</button>
+        </div>
+
+        <h3>📄 Share Code</h3>
+        <textarea id="codeBox" placeholder="Paste your code here..."></textarea>
+        <button onclick="submitCode()">📎 Share Code</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+
+<script>
+    let stompClient;
+    let userId = "", roomId = "";
+    const chatLog = document.getElementById("chatLog");
+
+    function startChat() {
+      userId = document.getElementById("userIdInput").value.trim();
+      roomId = document.getElementById("roomIdInput").value.trim();
+
+      if (!userId || !roomId) {
+        alert("Please enter both your name and a room ID.");
+        return;
+      }
+
+      document.getElementById("loginUI").style.display = "none";
+      document.getElementById("chatUI").style.display = "flex";
+      document.getElementById("roomDisplay").textContent = roomId;
+
+      connectSocket();
+    }
+
+    function connectSocket() {
+      stompClient = Stomp.over(new SockJS("/signal"));
+      stompClient.connect({}, () => {
+        stompClient.subscribe("/topic/chat/" + roomId, msg => {
+          const { from, data } = JSON.parse(msg.body);
+          displayMessage(from, data);
+        });
+
+        stompClient.subscribe("/topic/users/" + roomId, msg => {
+          const users = JSON.parse(msg.body);
+          updateUserList(users);
+        });
+
+        stompClient.send("/app/chat", {}, JSON.stringify({
+          from: userId,
+          room: roomId,
+          type: "join",
+          data: ""
+        }));
+      });
+    }
+
+    function sendMsg() {
+      const text = document.getElementById("textMsg").value.trim();
+      if (!text) return;
+
+      const msg = {
+        from: userId,
+        room: roomId,
+        type: "chat",
+        data: text
+      };
+
+      stompClient.send("/app/chat", {}, JSON.stringify(msg));
+      document.getElementById("textMsg").value = "";
+    }
+
+    function submitCode() {
+      const code = document.getElementById("codeBox").value.trim();
+      if (!code) return;
+
+      const msg = {
+        from: userId,
+        room: roomId,
+        type: "code",
+        data: code
+      };
+
+      stompClient.send("/app/code", {}, JSON.stringify(msg));
+    }
+
+    function leaveChat() {
+      if (stompClient) {
+        stompClient.send("/app/chat", {}, JSON.stringify({
+          from: userId,
+          room: roomId,
+          type: "leave",
+          data: ""
+        }));
+        stompClient.disconnect();
+      }
+
+      document.getElementById("chatUI").style.display = "none";
+      document.getElementById("loginUI").style.display = "block";
+
+      document.getElementById("userIdInput").value = userId;  // preserve for next join
+      document.getElementById("roomIdInput").value = roomId;
+      document.getElementById("chatLog").innerHTML = "";      // keep old messages for history feel
+      document.getElementById("userList").innerHTML = "";
+
+      userId = "";
+    }
+
+    function startListening() {
+      const Speech = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!Speech) return alert("Speech recognition not supported in this browser.");
+
+      const recognition = new Speech();
+      recognition.lang = 'en-IN';
+      recognition.interimResults = false;
+
+      recognition.onresult = e => {
+        const transcript = e.results[0][0].transcript.toLowerCase();
+        document.getElementById("textMsg").value = transcript;
+        if (transcript.includes("ramu") && transcript.includes("stop")) {
+          stopSpeaking();
+          return;
+        }
+        sendMsg();
+      };
+
+      recognition.onerror = err => console.error("Speech error:", err);
+      recognition.start();
+    }
+
+    function stopSpeaking() {
+      if (speechSynthesis.speaking) speechSynthesis.cancel();
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-IN';
+      utterance.rate = 1;
+      speechSynthesis.speak(utterance);
+    }
+
+    function displayMessage(from, rawText) {
+      const div = document.createElement("div");
+      div.classList.add("chat-message");
+
+      const isRAMU = from.toLowerCase().includes("ramu");
+      div.classList.add(isRAMU ? "from-ramu" : "from-user");
+
+      div.innerHTML = `<span class="sender">${from}</span><div>${formatMarkdown(rawText)}</div>`;
+      chatLog.appendChild(div);
+      chatLog.scrollTop = chatLog.scrollHeight;
+
+      if (isRAMU) speak(rawText);
+    }
+
+    function formatMarkdown(text) {
+      return text
+        .replace(/```(\w+)?\n?([\s\S]*?)```/g, '<pre><code>$2</code></pre>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/^- (.*)/gm, '<li>$1</li>')
+        .replace(/\n{2,}/g, '</p><p>')
+        .replace(/\n/g, '<br>');
+    }
+
+    function updateUserList(users) {
+      const userList = document.getElementById("userList");
+      userList.innerHTML = "";
+      users.forEach(user => {
+        const li = document.createElement("li");
+        li.textContent = user;
+        userList.appendChild(li);
+      });
+    }
+
+    window.addEventListener("beforeunload", () => {
+      if (userId && stompClient) {
+        stompClient.send("/app/chat", {}, JSON.stringify({
+          from: userId,
+          room: roomId,
+          type: "leave",
+          data: ""
+        }));
+      }
+    });
+</script>
+
+</body>
+</html>
