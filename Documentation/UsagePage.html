@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🤖 RAMU - Usage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: #13131a;
+      --text-main: #f1f1f1;
+      --text-sub: #b5b5b5;
+      --primary: #00e0ff;
+      --secondary: #ff00f7;
+      --highlight: #00ffa1;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--text-main);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    nav {
+      background: #11111a;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 10px 20px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: rgba(0, 255, 177, 0.1);
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: radial-gradient(circle at center, #11111a, #0a0a0f);
+      box-shadow: 0 0 40px var(--primary);
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: var(--highlight);
+      text-shadow: 0 0 8px var(--highlight);
+    }
+
+    header p {
+      font-size: 1.15rem;
+      color: var(--text-sub);
+      max-width: 800px;
+      margin: 20px auto 0;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      border-left: 4px solid var(--secondary);
+      padding-left: 12px;
+      margin-bottom: 25px;
+    }
+
+    .usage-step {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 20px 25px;
+      border-radius: 14px;
+      margin-bottom: 25px;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 5px solid var(--highlight);
+    }
+
+    .usage-step:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 20px rgba(0,255,177,0.15);
+    }
+
+    .usage-step h3 {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .usage-step p {
+      font-size: 1.05rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    .back-link {
+      display: block;
+      text-align: right;
+      
+      color: var(--highlight);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      background: #080808;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="particles-js"></div>
+
+ 
+
+  <header>
+    <a class="back-link" href="LandingPage.html">← Back to Main Documentation</a>
+    <h1>🚀 RAMU: Usage Guide</h1>
+    <p>Follow these simple steps to get started with RAMU and boost your Agile workflow with smart automation.</p>
+  </header>
+
+  <div class="container">
+    <h2>Step-by-Step Usage 📋</h2>
+
+   <div class="usage-step">
+  <h3>⚙️ Installation</h3>
+  <p><strong>1. RAMU Extension:</strong> Open the <code>ramukakaExtension</code> folder in Visual Studio Code. Launch <code>extension.ts</code> and press <strong>F5</strong> to start RAMU in a new Extension Development Host—no Marketplace install needed.</p>
+  <p><strong>2. Backend Setup:</strong> Open the <code>ramukaka</code> folder in IntelliJ or Eclipse. Generate a <strong>Gemini API Key</strong> from Google AI Studio, and configure your <strong>email and password</strong> in the backend application properties.</p>
+  <p><strong>3. Flowchart Renderer:</strong> Place the <code>ramu-react-preview</code> folder in the same directory as <code>ramukakaExtension</code>. This enables JSX-based animated flowchart previews within the extension.</p>
+</div>
+
+
+    <div class="usage-step">
+      <h3>2️⃣ Join or Create a Room</h3>
+      <p>Provide your <strong>Name</strong>, <strong>Email</strong>, and a <strong>Room ID</strong> to join a session. You can invite teammates to the same Room ID for real-time collaboration.</p>
+    </div>
+
+    <div class="usage-step">
+      <h3>3️⃣ Start Interacting</h3>
+      <p>Use the chat to send <strong>text, code snippets</strong>, or <strong>graph diagrams</strong>. RAMU will process your input contextually using AI magic and backend intelligence.</p>
+    </div>
+
+    <div class="usage-step">
+      <h3>4️⃣ Generate Insights</h3>
+      <p>Trigger <strong>email summaries</strong>, <strong>flowchart JSX previews</strong>, or <strong>code reviews</strong> using buttons in the RAMU panel. All processing is handled via live backend APIs.</p>
+    </div>
+
+    <div class="usage-step">
+      <h3>5️⃣ Review and Share</h3>
+      <p>Share reviewed code, export diagrams, or email standup reports right from the interface. RAMU keeps it all smooth, fast, and intuitive.</p>
+    </div>
+
+    
+  </div>
+
+  <footer>
+    ⚙️ RAMU AI Assistant · Crafted by Ritik Agrawal · © 2025
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    particlesJS.load('particles-js', 'https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/particles.json');
+  </script>
+</body>
+</html>

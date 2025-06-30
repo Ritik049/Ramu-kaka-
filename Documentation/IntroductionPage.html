@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🤖 RAMU - Introduction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: #13131a;
+      --text-main: #f1f1f1;
+      --text-sub: #b5b5b5;
+      --primary: #00e0ff;
+      --secondary: #ff00f7;
+      --highlight: #00ffa1;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--text-main);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    nav {
+      background: #11111a;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 10px 20px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: rgba(0, 255, 177, 0.1);
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: radial-gradient(circle at center, #11111a, #0a0a0f);
+      box-shadow: 0 0 40px var(--primary);
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: var(--highlight);
+      text-shadow: 0 0 8px var(--highlight);
+    }
+
+    header p {
+      font-size: 1.15rem;
+      color: var(--text-sub);
+      max-width: 800px;
+      margin: 20px auto 0;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      border-left: 4px solid var(--secondary);
+      padding-left: 12px;
+      margin-bottom: 25px;
+    }
+
+    .scenario {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-left: 5px solid var(--highlight);
+      padding: 25px;
+      border-radius: 14px;
+      margin-bottom: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .scenario:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 20px rgba(0,255,177,0.15);
+    }
+
+    .scenario h3 {
+      color: var(--primary);
+      font-size: 1.4rem;
+      margin-top: 0;
+    }
+
+    .scenario p {
+      color: var(--text-sub);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .back-link {
+      display: block;
+      text-align: right;
+      
+      color: var(--highlight);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      background: #080808;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="particles-js"></div>
+
+  
+ 
+  <header>
+    <a class="back-link" href="LandingPage.html">← Back to Main Documentation</a>
+    <h1>🤖 RAMU: Introduction</h1>
+    <p id="intro">
+      RAMU is not just an assistant—it's an Agile AI Companion that simplifies development processes by combining chat, code intelligence, summarization, and diagram generation in a unified VS Code experience.
+    </p>
+     
+  </header>
+
+  <div class="container">
+
+    <h2 id="scenarios">Where RAMU Makes a Difference 💡</h2>
+
+    <div class="scenario">
+      <h3>📋 Daily Standups</h3>
+      <p>Team members can quickly summarize their daily progress via chat, and RAMU will auto-generate standup notes. These notes can then be emailed or stored for future reference with a single click.</p>
+    </div>
+
+    <div class="scenario">
+      <h3>✅ Agile Sprint Planning</h3>
+      <p>By analyzing chat context, RAMU helps generate summaries, pending tasks, and progress flows which can be reviewed during sprint planning. Its flowchart capability helps visualize dependencies instantly.</p>
+    </div>
+
+    <div class="scenario">
+      <h3>🧠 Knowledge Transfers</h3>
+      <p>RAMU can record KT notes by summarizing chat, generating flowcharts from graphs, and maintaining documentation in real time, minimizing human error and duplication of effort.</p>
+    </div>
+
+    <div class="scenario">
+      <h3>🔍 Code Reviews</h3>
+      <p>Developers can share individual code snippets or allow RAMU to scan the entire workspace, including the currently active file. RAMU intelligently understands the full codebase, enabling it to provide contextual reviews, suggest improvements, explain code flow, and generate actionable insights—all seamlessly integrated through backend APIs.</p>
+    </div>
+
+    <div class="scenario">
+      <h3>📬 Email Generation</h3>
+      <p>With a click, RAMU converts lengthy Agile chats into crisp, actionable email summaries. Team leads save time and reduce manual copy-paste chaos in reporting.</p>
+    </div>
+
+    <div class="scenario">
+      <h3>🔄 Flowchart Creation</h3>
+      <p>When users request flowcharts or process diagrams, RAMU intelligently interprets the context and offers a 'Generate Flowchart' option. It produces animated JSX-based visualizations that clearly represent the underlying logic—ideal for technical discussions, onboarding, and Agile documentation.</p>
+    </div>
+
+    <!-- <a class="back-link" href="index.html">← Back to Main Documentation</a> -->
+  </div>
+
+  <footer>
+    ⚙️ RAMU AI Assistant · Crafted by Ritik Agrawal · © 2025
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    particlesJS.load('particles-js', 'https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/particles.json');
+  </script>
+</body>
+</html>

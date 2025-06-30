@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📝 RAMU - License</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: #13131a;
+      --text-main: #f1f1f1;
+      --text-sub: #b5b5b5;
+      --primary: #00e0ff;
+      --secondary: #ff00f7;
+      --highlight: #00ffa1;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--text-main);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    nav {
+      background: #11111a;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 10px 20px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: rgba(0, 255, 177, 0.1);
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: radial-gradient(circle at center, #11111a, #0a0a0f);
+      box-shadow: 0 0 40px var(--primary);
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: var(--highlight);
+      text-shadow: 0 0 8px var(--highlight);
+    }
+
+    header p {
+      font-size: 1.15rem;
+      color: var(--text-sub);
+      max-width: 800px;
+      margin: 20px auto 0;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .license-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      border-left: 5px solid var(--highlight);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      margin-bottom: 40px;
+      box-shadow: 0 0 20px rgba(0, 255, 177, 0.05);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      border-left: 4px solid var(--secondary);
+      padding-left: 12px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: var(--text-sub);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    code {
+      background: #1e1e2a;
+      color: var(--highlight);
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-family: monospace;
+    }
+
+    .back-link {
+      display: block;
+      text-align: right;
+      
+      color: var(--highlight);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      background: #080808;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="particles-js"></div>
+
+  
+
+  <header>
+    <a class="back-link" href="LandingPage.html">← Back to Main Documentation</a>
+    <h1>📝 RAMU: License</h1>
+    <p>Understand the rights and limitations for using and modifying the RAMU AI Assistant under open-source terms.</p>
+  </header>
+
+  <div class="container">
+    <div class="license-card">
+      <h2>📖 MIT License</h2>
+      <p>
+        RAMU is distributed under the <strong>MIT License</strong>. This means you're free to use, modify, merge, publish, distribute, sublicense, and/or sell copies of the software.
+      </p>
+      <p>
+        However, the following conditions apply:
+      </p>
+      <ul>
+        <li>The above copyright notice and this permission notice shall be included in all copies.</li>
+        <li>The software is provided "as-is", without warranty of any kind, express or implied.</li>
+      </ul>
+
+      <p>
+        For complete details, see:
+        <br>
+        <code>https://opensource.org/licenses/MIT</code>
+      </p>
+    </div>
+
+    
+  </div>
+
+  <footer>
+    ⚙️ RAMU AI Assistant · Crafted by Ritik Agrawal · © 2025
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    particlesJS.load('particles-js', 'https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/particles.json');
+  </script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🤖 RAMU - Features</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: #13131a;
+      --text-main: #f1f1f1;
+      --text-sub: #b5b5b5;
+      --primary: #00e0ff;
+      --secondary: #ff00f7;
+      --highlight: #00ffa1;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--text-main);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    nav {
+      background: #11111a;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 10px 20px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: rgba(0, 255, 177, 0.1);
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: radial-gradient(circle at center, #11111a, #0a0a0f);
+      box-shadow: 0 0 40px var(--primary);
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 3.2rem;
+      color: var(--highlight);
+      text-shadow: 0 0 8px var(--highlight);
+    }
+
+    header p {
+      font-size: 1.25rem;
+      color: var(--text-sub);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-left: 5px solid var(--highlight);
+      padding: 25px;
+      border-radius: 14px;
+      margin-bottom: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .feature-card:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 20px rgba(0,255,177,0.2);
+    }
+
+    .feature-card h3 {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-top: 0;
+    }
+
+    .feature-card p {
+      color: var(--text-sub);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      background: #080808;
+      z-index: 2;
+    }
+
+     .back-link {
+      display: block;
+      text-align: right;
+      
+      color: var(--highlight);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+ 
+
+  <header>
+    <a class="back-link" href="LandingPage.html">← Back to Main Documentation</a>
+    <h1>✨ RAMU Features</h1>
+    <p>Explore how RAMU empowers agile teams with smart assistance.</p>
+  </header>
+
+  <div class="container">
+
+    <div class="feature-card">
+      <h3>💬 Multi-User Chat Rooms</h3>
+      <p>Real-time team collaboration with contextual memory and user tagging—ideal for daily standups, discussions, and updates.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>📧 AI Email Summaries</h3>
+      <p>Convert long agile discussions into crisp, actionable summaries ready to send via email. Save time and never miss context.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>📊 Flowchart Generator</h3>
+      <p>Ask RAMU for a flowchart—get a clear process outline and an instant animated JSX preview at the click of a button.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>🧠 AI Code Review</h3>
+      <p>Drop code snippets into chat. RAMU suggests improvements and connects to a live backend API to track review history per file.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>📂 Workspace File Scanner</h3>
+      <p>RAMU reads through VS Code project files and intelligently recommends documentation, clean-up, or review suggestions.</p>
+    </div>
+
+    
+
+    <div class="feature-card">
+      <h3>🔐 Context API Memory</h3>
+      <p>RAMU stores contextual memory of conversations and events using a backend API, enabling smarter decisions and follow-ups.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    ⚙️ RAMU AI Assistant · Crafted by Ritik Agrawal · © 2025
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    particlesJS.load('particles-js', 'https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/particles.json');
+  </script>
+</body>
+</html>
