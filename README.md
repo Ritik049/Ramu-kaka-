@@ -2,4 +2,4 @@
 Virtual AI assitant Ramu kaka
 
 # Documentation : 
- ## https://aesthetic-bienenstitch-5a5cc1.netlify.app/
+ ## https://fastidious-fenglisu-7dd434.netlify.app/
